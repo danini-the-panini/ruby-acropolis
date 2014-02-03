@@ -7,6 +7,10 @@ module EMS
     def initialize
       @id = SecureRandom::uuid
       @systems = Hash.new
+
+      @delta = 0
+      @time = 0
+      @current_time = Time::timestamp
     end
 
     def id
@@ -14,6 +18,11 @@ module EMS
     end
 
     def update engine
+      new_time = Time::timestamp
+      @delta = (new_time - @current_time) / EMS::NANOS_PER_SECOND
+      @current_time = new_time
+      @time += @delta
+
       @systems.each_value do |s|
         s.update self
       end

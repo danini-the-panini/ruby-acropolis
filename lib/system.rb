@@ -12,7 +12,7 @@ module EMS
       @id
     end
 
-    def update engine
+    def update engine, time, dt
     end
 
   end
