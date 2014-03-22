@@ -9,6 +9,7 @@ module EMS
       EMS.nodes[:test_node2] = [:foo, :baz]
     end
 
+    ## GLOBALS
     context "when a global is set" do
       let(:global) { Object.new }
 
@@ -30,8 +31,12 @@ module EMS
         it { should_not have_global(:object) }
       end
     end
+    ## /GLOBALS
 
+    ## ENTITIES + NODES
     context "after an entity has been added" do
+
+      # ENTITIES
       let(:entity) { Entity.new }
 
       before(:each) do
@@ -66,6 +71,7 @@ module EMS
         end
       end
 
+      # NODES
       context "after a node list has been accessed" do
         before(:each) do
           engine.get_node_list(:test_node)
@@ -93,7 +99,9 @@ module EMS
         end
       end
     end
+    ## /ENTITIES + NODES
 
+    ## THREADS
     context "when a thread is added" do
       let(:thread) { Thread.new }
 
@@ -136,5 +144,6 @@ module EMS
         end
       end
     end
+    ## /THREADS
   end
 end
